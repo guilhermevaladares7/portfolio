@@ -1,6 +1,5 @@
 export const journey = {
   j: 0,
-  intro: 0,
   exp: 0,
   pulse: 0,
   hover: -1,

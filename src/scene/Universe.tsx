@@ -29,7 +29,7 @@ export default function Universe({ onHoverPlanet }: { onHoverPlanet?: (index: nu
       <DistantGalaxies count={small ? 120 : 260} />
       <Galaxy count={small ? 10000 : 24000} />
       <BlackHole count={small ? 1200 : 2800} />
-      <Planet position={homeworld} color="#36e2b4" size={HOMEWORLD_SIZE} seed={0.4} detail={2.4} ring active={() => Math.round(journey.j) === STOPS.about} />
+      <Planet position={homeworld} color="#36e2b4" size={HOMEWORLD_SIZE} seed={0.4} ring active={() => Math.round(journey.j) === STOPS.about} />
       {planets.map((p, i) => (
         <Planet
           key={p.id}

@@ -1,8 +1,8 @@
 import { useFrame, useThree } from '@react-three/fiber'
 import { useMemo, useRef } from 'react'
-import { CatmullRomCurve3, MathUtils, PerspectiveCamera, Vector3 } from 'three'
+import { CatmullRomCurve3, MathUtils, Vector3 } from 'three'
 import { journey } from './journey'
-import { introPath, shots } from './layout'
+import { shots } from './layout'
 
 function hold(f: number) {
   return MathUtils.smootherstep(f, 0.22, 0.78)
@@ -17,8 +17,6 @@ export function CameraRig() {
       position: new CatmullRomCurve3(shots.map((s) => s.position), false, ...opts),
       wide: new CatmullRomCurve3(shots.map((s) => s.target), false, ...opts),
       narrow: new CatmullRomCurve3(shots.map((s) => s.targetNarrow), false, ...opts),
-      introPosition: new CatmullRomCurve3(introPath.position, false, ...opts),
-      introTarget: new CatmullRomCurve3(introPath.target, false, ...opts),
     }
   }, [])
 
@@ -27,7 +25,6 @@ export function CameraRig() {
   const look = useRef(new Vector3(0, 0, 0))
   const temp = useMemo(() => new Vector3(), [])
   const started = useRef(false)
-  const baseFov = useRef(0)
 
   useFrame((state, delta) => {
     const camera = state.camera
@@ -41,29 +38,6 @@ export function CameraRig() {
     ;(narrow ? curves.narrow : curves.wide).getPoint(u, goalLook.current)
 
     if (narrow) goalPos.current.addScaledVector(temp.copy(goalPos.current).sub(goalLook.current).normalize(), 3.5)
-
-    const flying = journey.intro < 1
-    if (flying) {
-      const e = Math.pow(MathUtils.smootherstep(journey.intro, 0, 1), 1.6)
-      curves.introPosition.getPoint(e, goalPos.current)
-      curves.introTarget.getPoint(e, goalLook.current)
-    }
-
-    const cam = camera as PerspectiveCamera
-    if (!baseFov.current) baseFov.current = cam.fov
-    const warp = flying ? Math.pow(Math.sin(Math.PI * MathUtils.smoothstep(journey.intro, 0.45, 1)), 2) * 14 : 0
-    const fov = baseFov.current + warp
-    if (Math.abs(cam.fov - fov) > 0.01) {
-      cam.fov = fov
-      cam.updateProjectionMatrix()
-    }
-
-    if (flying) {
-      camera.position.copy(goalPos.current)
-      look.current.copy(goalLook.current)
-      camera.lookAt(look.current)
-      return
-    }
 
     if (!journey.reduced && !narrow) {
       goalPos.current.x += journey.pointer.x * 0.9

@@ -16,7 +16,6 @@ export const copy = {
   },
   boot: {
     line: { pt: 'ligando o universo', en: 'powering up the universe' },
-    skip: { pt: 'Pular', en: 'Skip' },
   },
   hero: {
     start: { pt: 'Começar a viagem', en: 'Start the journey' },
