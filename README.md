@@ -39,6 +39,7 @@
 - [Funcionalidades Principais](#-funcionalidades-principais)
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
   - [Dependências](#-dependências)
+- [Wireframes](#-wireframes)
 - [Arquitetura](#-arquitetura)
 - [Instalação e Execução](#-instalação-e-execução)
   - [Pré-requisitos](#pré-requisitos)
@@ -137,6 +138,16 @@ O objetivo é apresentar a minha trajetória, minhas habilidades, meus projetos 
 | `typescript` | 7.0 | Tipagem |
 | `oxlint` | 1.90 | Lint |
 | `@types/three`, `@types/react`, `@types/react-dom`, `@types/node` | — | Tipos para o TypeScript |
+
+---
+
+## 📐 Wireframes
+
+Wireframes de média fidelidade das cinco seções, no computador (1440 × 900) e no celular (390 × 844), mais o menu aberto do celular. As anotações em azul explicam o comportamento de cada tela.
+
+<img src="docs/wireframes/visao-geral.png" alt="Visão geral dos wireframes do computador e do celular" width="800px">
+
+Os arquivos estão em [`docs/wireframes`](docs/wireframes), em SVG: um por tela e o [`wireframes.svg`](docs/wireframes/wireframes.svg) com todas juntas. No Figma, é só arrastar o SVG para o arquivo: ele vira um desenho editável, com camadas.
 
 ---
 
@@ -250,7 +261,7 @@ Para ativar num fork: **Settings → Pages → Source: GitHub Actions**.
 .
 ├── .github/workflows/deploy.yml   # 🤖 Build e deploy no GitHub Pages
 ├── .env.example                   # 🧩 Variáveis do EmailJS (sem valores)
-├── docs/                          # 🖼️ Logo e capturas de tela usadas neste README
+├── docs/                          # 🖼️ Logo, capturas de tela e wireframes (SVG)
 ├── public/
 │   ├── favicon.svg                # ⭐ Ícone da aba, o A da Aurea
 │   └── projetos/                  # 🎞️ GIFs dos projetos funcionando
