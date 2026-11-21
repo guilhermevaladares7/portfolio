@@ -71,7 +71,7 @@ export const shots: Shot[] = [
   ...planets.map((p) => shotAround(p.position, 7.5 + p.size * 1.6, 2.4, 2.9 + p.size * 0.4, 1.6 + p.size * 0.3)),
   shotAround(constellationCenter, 17, 3.5, 5.5, 2.2),
   (() => {
-    const dir = new Vector3(Math.cos(lastAngle + 0.9), 0, Math.sin(lastAngle + 0.9))
+    const dir = new Vector3(Math.cos(lastAngle + 2.4), 0, Math.sin(lastAngle + 2.4))
     const position = dir.clone().multiplyScalar(16).add(new Vector3(0, 1.6, 0))
     const forward = position.clone().negate().normalize()
     const right = new Vector3().crossVectors(forward, UP).normalize()

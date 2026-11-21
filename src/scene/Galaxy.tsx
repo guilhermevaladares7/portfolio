@@ -17,7 +17,7 @@ const vertex = `
     float s = sin(turn);
     vec3 p = vec3(position.x * c - position.z * s, position.y, position.x * s + position.z * c);
     vec4 mv = modelViewMatrix * vec4(p, 1.0);
-    gl_PointSize = clamp(aSize * uPixel * (170.0 / -mv.z), 1.2, 40.0);
+    gl_PointSize = clamp(aSize * uPixel * (170.0 / -mv.z), 1.2, 18.0);
     gl_Position = projectionMatrix * mv;
     vColor = aColor;
   }
