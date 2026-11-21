@@ -11,7 +11,6 @@ function hold(f: number) {
 }
 
 export function CameraRig() {
-  const camera = useThree((s) => s.camera)
   const size = useThree((s) => s.size)
 
   const curves = useMemo(() => {
@@ -29,7 +28,8 @@ export function CameraRig() {
   const temp = useMemo(() => new Vector3(), [])
   const started = useRef(false)
 
-  useFrame((_, delta) => {
+  useFrame((state, delta) => {
+    const camera = state.camera
     const last = shots.length - 1
     const j = MathUtils.clamp(journey.j, 0, last)
     const i = Math.min(Math.floor(j), last - 1)

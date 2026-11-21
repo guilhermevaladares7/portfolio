@@ -1,6 +1,7 @@
 import { useFrame } from '@react-three/fiber'
 import { useMemo, useRef } from 'react'
 import { AdditiveBlending, Color, ShaderMaterial } from 'three'
+import { seeded } from '../lib/random'
 import { ARMS, GALAXY_RADIUS, SPIN } from './layout'
 
 const vertex = `
@@ -31,11 +32,11 @@ const fragment = `
   }
 `
 
-function gauss() {
+function gauss(rand: () => number) {
   let u = 0
   let v = 0
-  while (u === 0) u = Math.random()
-  while (v === 0) v = Math.random()
+  while (u === 0) u = rand()
+  while (v === 0) v = rand()
   return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v)
 }
 
@@ -43,6 +44,7 @@ export function Galaxy({ count }: { count: number }) {
   const material = useRef<ShaderMaterial>(null)
 
   const geometry = useMemo(() => {
+    const rand = seeded(2026)
     const positions = new Float32Array(count * 3)
     const colors = new Float32Array(count * 3)
     const sizes = new Float32Array(count)
@@ -54,14 +56,14 @@ export function Galaxy({ count }: { count: number }) {
     const c = new Color()
 
     for (let i = 0; i < count; i++) {
-      const r = Math.pow(Math.random(), 1.55) * GALAXY_RADIUS + 1.8
+      const r = Math.pow(rand(), 1.55) * GALAXY_RADIUS + 1.8
       const arm = i % ARMS
       const spread = 0.35 + r * 0.075
-      const angle = (arm / ARMS) * Math.PI * 2 + r * SPIN + gauss() * 0.11
-      const x = Math.cos(angle) * r + gauss() * spread
-      const z = Math.sin(angle) * r + gauss() * spread
+      const angle = (arm / ARMS) * Math.PI * 2 + r * SPIN + gauss(rand) * 0.11
+      const x = Math.cos(angle) * r + gauss(rand) * spread
+      const z = Math.sin(angle) * r + gauss(rand) * spread
       const thickness = 2.6 * Math.exp(-r / 16) + 0.35
-      const y = gauss() * thickness
+      const y = gauss(rand) * thickness
 
       positions.set([x, y, z], i * 3)
       radii[i] = r
@@ -69,10 +71,10 @@ export function Galaxy({ count }: { count: number }) {
       const t = r / GALAXY_RADIUS
       if (t < 0.35) c.copy(core).lerp(mid, t / 0.35)
       else c.copy(mid).lerp(edge, Math.min(1, (t - 0.35) / 0.5))
-      if (Math.random() < 0.08) c.copy(dust[i % dust.length])
-      const bright = 0.55 + Math.random() * 0.6
+      if (rand() < 0.08) c.copy(dust[i % dust.length])
+      const bright = 0.55 + rand() * 0.6
       colors.set([c.r * bright, c.g * bright, c.b * bright], i * 3)
-      sizes[i] = Math.random() < 0.015 ? 2.6 + Math.random() * 2 : 0.6 + Math.random() * 1.1
+      sizes[i] = rand() < 0.015 ? 2.6 + rand() * 2 : 0.6 + rand() * 1.1
     }
 
     return { positions, colors, sizes, radii }

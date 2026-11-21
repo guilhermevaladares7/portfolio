@@ -1,6 +1,7 @@
 import { useFrame } from '@react-three/fiber'
 import { useMemo, useRef } from 'react'
 import { AdditiveBlending, Color, Group, MathUtils, ShaderMaterial, Sprite, SpriteMaterial } from 'three'
+import { seeded } from '../lib/random'
 import { glowTexture } from './glow'
 import { journey } from './journey'
 
@@ -39,6 +40,7 @@ export function BlackHole({ count }: { count: number }) {
   const core = useRef<SpriteMaterial>(null)
 
   const data = useMemo(() => {
+    const rand = seeded(11)
     const positions = new Float32Array(count * 3)
     const radii = new Float32Array(count)
     const angles = new Float32Array(count)
@@ -49,16 +51,16 @@ export function BlackHole({ count }: { count: number }) {
     const cool = new Color('#ff3d7f')
     const c = new Color()
     for (let i = 0; i < count; i++) {
-      const r = 2.15 + Math.pow(Math.random(), 1.8) * 6.5
+      const r = 2.15 + Math.pow(rand(), 1.8) * 6.5
       radii[i] = r
-      angles[i] = Math.random() * Math.PI * 2
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 0.12 * r * 0.4
+      angles[i] = rand() * Math.PI * 2
+      positions[i * 3 + 1] = (rand() - 0.5) * 0.12 * r * 0.4
       const t = (r - 2.15) / 6.5
       if (t < 0.25) c.copy(hot).lerp(warm, t / 0.25)
       else c.copy(warm).lerp(cool, Math.min(1, (t - 0.25) / 0.75))
-      const b = 0.7 + Math.random() * 0.5
+      const b = 0.7 + rand() * 0.5
       colors.set([c.r * b, c.g * b, c.b * b], i * 3)
-      sizes[i] = 0.7 + Math.random() * 1.4
+      sizes[i] = 0.7 + rand() * 1.4
     }
     return { positions, radii, angles, sizes, colors }
   }, [count])

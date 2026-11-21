@@ -1,6 +1,7 @@
 import { useFrame } from '@react-three/fiber'
 import { useMemo, useRef } from 'react'
 import { AdditiveBlending, ShaderMaterial } from 'three'
+import { seeded } from '../lib/random'
 
 const vertex = `
   attribute float aSize;
@@ -33,17 +34,18 @@ export function Starfield({ count }: { count: number }) {
   const material = useRef<ShaderMaterial>(null)
 
   const data = useMemo(() => {
+    const rand = seeded(7)
     const positions = new Float32Array(count * 3)
     const sizes = new Float32Array(count)
     const seeds = new Float32Array(count)
     for (let i = 0; i < count; i++) {
-      const r = 260 + Math.random() * 360
-      const u = Math.random() * 2 - 1
-      const th = Math.random() * Math.PI * 2
+      const r = 260 + rand() * 360
+      const u = rand() * 2 - 1
+      const th = rand() * Math.PI * 2
       const s = Math.sqrt(1 - u * u)
       positions.set([r * s * Math.cos(th), r * u, r * s * Math.sin(th)], i * 3)
-      sizes[i] = Math.random() < 0.06 ? 3.2 : 1 + Math.random() * 1.4
-      seeds[i] = Math.random()
+      sizes[i] = rand() < 0.06 ? 3.2 : 1 + rand() * 1.4
+      seeds[i] = rand()
     }
     return { positions, sizes, seeds }
   }, [count])
