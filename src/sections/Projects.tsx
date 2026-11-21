@@ -33,9 +33,9 @@ export function Projects({ stop, hovered }: { stop: number; hovered: number }) {
             <AnimatePresence mode="wait">
               <motion.article
                 key={p.id}
-                initial={{ opacity: 0, x: -50, filter: 'blur(6px)' }}
-                animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-                exit={{ opacity: 0, x: 40, filter: 'blur(6px)' }}
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 40 }}
                 transition={{ duration: 0.45, ease: [0.2, 0.9, 0.2, 1] }}
                 className="glass w-full max-w-[560px] overflow-hidden rounded-3xl ring-1 ring-white/10"
                 style={{ boxShadow: `0 30px 80px -40px ${p.color}` }}

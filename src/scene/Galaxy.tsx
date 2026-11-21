@@ -1,7 +1,6 @@
 import { useFrame } from '@react-three/fiber'
 import { useMemo, useRef } from 'react'
-import { AdditiveBlending, Color, MathUtils, ShaderMaterial, SpriteMaterial } from 'three'
-import { glowTexture } from './glow'
+import { AdditiveBlending, Color, MathUtils, ShaderMaterial } from 'three'
 import { seeded } from '../lib/random'
 import { ARMS, GALAXY_RADIUS, SPIN } from './layout'
 
@@ -87,23 +86,15 @@ export function Galaxy({ count }: { count: number }) {
 
   const uniforms = useMemo(() => ({ uTime: { value: 0 }, uPixel: { value: Math.min(window.devicePixelRatio, 1.25) }, uFade: { value: 0 } }), [])
 
-  const impostor = useRef<SpriteMaterial>(null)
-  const spiral = glowTexture('spiral')
-
   useFrame((state) => {
     const d = state.camera.position.length()
     if (material.current) {
       material.current.uniforms.uTime.value = state.clock.elapsedTime
       material.current.uniforms.uFade.value = 1 - MathUtils.smoothstep(d, 420, 2400)
     }
-    if (impostor.current) impostor.current.opacity = MathUtils.smoothstep(d, 300, 1500) * 0.95
   })
 
   return (
-    <group>
-    <sprite scale={[210, 210, 1]}>
-      <spriteMaterial ref={impostor} map={spiral} color="#ffe2c4" transparent opacity={0} depthWrite={false} blending={AdditiveBlending} />
-    </sprite>
     <points frustumCulled={false}>
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[geometry.positions, 3]} />
@@ -121,6 +112,5 @@ export function Galaxy({ count }: { count: number }) {
         blending={AdditiveBlending}
       />
     </points>
-    </group>
   )
 }

@@ -3,7 +3,7 @@ import { useRef } from 'react'
 
 export function AdaptiveQuality() {
   const setDpr = useThree((s) => s.setDpr)
-  const sample = useRef({ time: 0, frames: 0, dpr: Math.min(window.devicePixelRatio, 1.25) })
+  const sample = useRef({ time: 0, frames: 0, dpr: 1 })
 
   useFrame((_, delta) => {
     const s = sample.current
@@ -13,8 +13,8 @@ export function AdaptiveQuality() {
     const fps = s.frames / s.time
     s.time = 0
     s.frames = 0
-    if (fps < 42 && s.dpr > 0.6) {
-      s.dpr = Math.max(0.6, s.dpr - 0.15)
+    if (fps < 45 && s.dpr > 0.55) {
+      s.dpr = Math.max(0.55, s.dpr - 0.15)
       setDpr(s.dpr)
     } else if (fps > 58 && s.dpr < Math.min(window.devicePixelRatio, 1.25)) {
       s.dpr = Math.min(Math.min(window.devicePixelRatio, 1.25), s.dpr + 0.1)
