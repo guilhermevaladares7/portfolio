@@ -47,8 +47,10 @@ export default function App() {
       </SpaceFallback>
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(4,6,11,0.55)_100%)]" />
       <Boot onDone={done} />
-      <Nav stop={stop} />
-      <JourneyRail stop={stop} />
+      <div className={ready ? 'opacity-100 transition-opacity duration-1000' : 'pointer-events-none opacity-0'}>
+        <Nav stop={stop} />
+        <JourneyRail stop={stop} />
+      </div>
       <main className="relative z-10 [&_a]:pointer-events-auto [&_button]:pointer-events-auto [&_form]:pointer-events-auto [&_.glass]:pointer-events-auto pointer-events-none">
         <Hero ready={ready} />
         <About />
