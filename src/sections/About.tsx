@@ -50,9 +50,18 @@ export function About() {
               </div>
             </div>
 
-            <p className="mt-6 text-[clamp(20px,1.8vw,24px)] font-semibold text-aurea">
-              <DecodeText text={t(about.greeting)} />
-            </p>
+            <div className="mt-6 flex items-center gap-4">
+              <img
+                src={`${import.meta.env.BASE_URL}guilherme.jpg`}
+                alt={t(copy.about.photo)}
+                width={150}
+                height={150}
+                className="h-16 w-16 shrink-0 rounded-full object-cover ring-2 ring-aurea/60 ring-offset-2 ring-offset-space sm:h-[72px] sm:w-[72px]"
+              />
+              <p className="text-[clamp(20px,1.8vw,24px)] font-semibold text-aurea">
+                <DecodeText text={t(about.greeting)} />
+              </p>
+            </div>
             <div className="mt-3 space-y-3 text-[16px] leading-relaxed text-ink/85 sm:text-[17px]">
               {about.paragraphs.map((p, i) => (
                 <p key={i} className={cn(i > 1 && 'hidden sm:block')}>
