@@ -3,7 +3,7 @@ import type { Text } from '../i18n'
 export const profile = {
   name: 'Guilherme Valadares',
   fullName: 'Guilherme Ferreira Valadares',
-  role: { pt: 'Desenvolvedor full stack e fundador da Aurea', en: 'Full stack developer and founder of Aurea' } as Text,
+  role: { pt: 'Desenvolvedor full stack e criador da Aurea', en: 'Full stack developer, creator of Aurea' } as Text,
   email: 'glhrmvaladares@gmail.com',
   whatsapp: '5533999657071',
   phoneLabel: '(33) 99965-7071',
@@ -23,8 +23,8 @@ export const about = {
       en: 'I study Software Engineering at PUC Minas and work as a full stack developer, from the database all the way to the screen the customer taps.',
     },
     {
-      pt: 'Em 17 de novembro de 2026 abri a Aurea, minha empresa de sites, sistemas e automações com IA para pequenos negócios. Lá eu cuido de tudo: a conversa com o cliente, o design, o código e o deploy.',
-      en: 'On November 17, 2026 I started Aurea, my company building websites, management systems and AI automations for small businesses. I handle everything there: talking to the client, design, code and deploy.',
+      pt: 'Em 17 de novembro de 2026 comecei a Aurea, o meu projeto de sites, sistemas e automações com IA para pequenos negócios. Nele eu cuido de tudo: a conversa com o cliente, o design, o código e o deploy.',
+      en: 'On November 17, 2026 I started Aurea, my project building websites, management systems and AI automations for small businesses. I handle everything in it: talking to the client, design, code and deploy.',
     },
     {
       pt: 'Gosto de projeto que sai do papel e entra na rotina de alguém: o site que traz cliente pelo WhatsApp, o sistema que fecha o caixa no fim do mês, a IA que responde enquanto a loja está fechada.',
@@ -38,7 +38,7 @@ export const about = {
   facts: [
     { label: { pt: 'Formação', en: 'Education' }, value: { pt: 'Engenharia de Software, PUC Minas', en: 'Software Engineering, PUC Minas' } },
     { label: { pt: 'Atuação', en: 'Focus' }, value: { pt: 'Desenvolvimento full stack', en: 'Full stack development' } },
-    { label: { pt: 'Empresa', en: 'Company' }, value: { pt: 'Aurea, desde novembro de 2026', en: 'Aurea, since November 2026' } },
+    { label: { pt: 'Projeto próprio', en: 'Own project' }, value: { pt: 'Aurea, desde novembro de 2026', en: 'Aurea, since November 2026' } },
     {
       label: { pt: 'Interesses', en: 'Interests' },
       value: { pt: 'IA aplicada, sistemas de gestão e interfaces com movimento', en: 'Applied AI, management systems and motion-driven interfaces' },

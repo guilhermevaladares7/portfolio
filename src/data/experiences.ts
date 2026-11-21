@@ -46,9 +46,9 @@ export const experiences: Experience[] = [
   },
   {
     org: 'Aurea',
-    role: { pt: 'Fundador e desenvolvedor full stack', en: 'Founder and full stack developer' },
+    role: { pt: 'Criador e desenvolvedor full stack', en: 'Creator and full stack developer' },
     period: { pt: 'nov 2026 – atual', en: 'Nov 2026 – present' },
-    kind: { pt: 'Empresa', en: 'Company' },
+    kind: { pt: 'Projeto próprio', en: 'Own project' },
     description: {
       pt: 'Sites, sistemas e automações com IA para pequenas empresas. Atendo o cliente, desenho a solução, programo, publico e acompanho depois da entrega.',
       en: 'Websites, systems and AI automations for small businesses. I talk to clients, design the solution, write the code, ship it and support it after launch.',

@@ -32,7 +32,7 @@ export function Hero({ ready }: { ready: boolean }) {
       <div className="mx-auto w-full max-w-[1320px]">
         {ready && (
           <>
-            <h1 className="wide text-[clamp(52px,10.5vw,170px)] font-extrabold leading-[0.86] tracking-[-0.04em] [text-shadow:0_4px_40px_rgba(4,6,11,0.8)]">
+            <h1 className="wide text-[clamp(40px,6.4vw,104px)] font-extrabold leading-[0.9] tracking-[-0.035em] [text-shadow:0_4px_40px_rgba(4,6,11,0.8)]">
               <span className="sr-only">{profile.name}</span>
               <span aria-hidden="true">
                 <Word text="Guilherme" delay={0.15} />

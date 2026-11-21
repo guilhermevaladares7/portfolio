@@ -136,8 +136,8 @@ export const projects: Project[] = [
     date: '2026-11',
     when: { pt: 'nov 2026', en: 'Nov 2026' },
     summary: {
-      pt: 'O site da minha empresa, com o mascote Auri em pixel art, demonstrações animadas de cada serviço e uma API de métricas no Supabase que alimenta o painel de um parceiro.',
-      en: 'My company website, featuring the pixel art mascot Auri, animated demos for each service and a Supabase metrics API that feeds a partner dashboard.',
+      pt: 'O site do meu projeto de sites, sistemas e automações, com o mascote Auri em pixel art, demonstrações animadas de cada serviço e uma API de métricas no Supabase que alimenta o painel de um parceiro.',
+      en: 'The website of my web, systems and automation project, featuring the pixel art mascot Auri, animated demos for each service and a Supabase metrics API that feeds a partner dashboard.',
     },
     tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Supabase'],
     repo: gh('aurea-site'),
