@@ -86,8 +86,8 @@ O objetivo é apresentar a minha trajetória, minhas habilidades, meus projetos 
 
 ## ✨ Funcionalidades Principais
 
-- 📺 **Abertura com a tela ligando:** a linha branca de um monitor CRT se abre e a câmera chega voando até a galáxia.
-- 🌌 **Universo em 3D guiado pela rolagem:** galáxia espiral com 70 mil partículas, planetas com superfície procedural, constelação e buraco negro com disco de acreção, todos em shaders próprios.
+- 📺 **Abertura épica:** a tela liga como um monitor CRT e a câmera começa a 7 mil unidades de distância, com a nossa galáxia do tamanho de um ponto entre centenas de outras. Ela mergulha em escala logarítmica, passa voando por galáxias no caminho, abre o campo de visão no meio do voo para dar sensação de velocidade e para na vista da galáxia, enquanto três frases mostram o tamanho do universo. Dá para pular.
+- 🌌 **Universo em 3D guiado pela rolagem:** galáxia espiral com 36 mil partículas, centenas de galáxias distantes, planetas com superfície procedural, constelação e buraco negro com disco de acreção, todos em shaders próprios.
 - 🪐 **Planetas clicáveis:** clicar num planeta leva até o projeto dele. Passar o mouse destaca o projeto na linha do tempo.
 - 🗂️ **Linha do tempo dos projetos:** oito projetos em ordem cronológica, cada um com nome, descrição, tecnologias, link do GitHub, link do site no ar (quando existe) e um GIF dele funcionando.
 - 💼 **Experiências organizadas:** empresa ou instituição, cargo ou atividade, período e descrição de cada etapa.
@@ -96,6 +96,7 @@ O objetivo é apresentar a minha trajetória, minhas habilidades, meus projetos 
 - 🔗 **Ícones de contato:** e-mail, WhatsApp, LinkedIn, Instagram, GitHub e o site da Aurea.
 - 🧭 **Navegação sempre à mão:** menu fixo no topo, menu em tela cheia no celular e uma trilha lateral que mostra em que ponto da viagem você está.
 - 👾 **Auri, o mascote da Aurea:** vestido de astronauta, ele guia a viagem e fala quando você clica nele.
+- ⚡ **Leve:** partículas animadas na GPU, painéis sem desfoque sobre o 3D e resolução que baixa sozinha quando o FPS cai.
 - 📱 **Responsivo e acessível:** layout próprio para celular, 3D mais leve em telas pequenas, versão sem animações para quem ativa "reduzir movimento" e fundo alternativo se o navegador não tiver WebGL.
 
 ---
