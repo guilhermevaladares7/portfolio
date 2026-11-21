@@ -87,7 +87,7 @@ O objetivo é apresentar a minha trajetória, minhas habilidades, meus projetos 
 
 ## ✨ Funcionalidades Principais
 
-- 📺 **Abertura épica:** a tela liga como um monitor CRT e a câmera aparece rente à superfície de um planeta gigante, com o anel cortando o céu e o centro da galáxia nascendo no horizonte. Depois ela sobe, se afasta até o planeta virar um ponto e abre a vista da galáxia inteira, com centenas de outras galáxias ao fundo. Dá para pular.
+- 📺 **Abertura com a tela ligando:** a linha branca de um monitor CRT se abre e revela a galáxia, com centenas de outras galáxias ao fundo.
 - 🌌 **Universo em 3D guiado pela rolagem:** galáxia espiral com 24 mil partículas, centenas de galáxias distantes, planetas com superfície procedural, constelação e buraco negro com disco de acreção, todos em shaders próprios.
 - 🪐 **Planetas clicáveis:** clicar num planeta leva até o projeto dele. Passar o mouse destaca o projeto na linha do tempo.
 - 🗂️ **Linha do tempo dos projetos:** oito projetos em ordem cronológica, cada um com nome, descrição, tecnologias, link do GitHub, link do site no ar (quando existe) e um GIF dele funcionando.
