@@ -61,6 +61,8 @@
 ## 🔗 Links Úteis
 * 🌐 **Site publicado:** [guilhermevaladares7.github.io/portfolio](https://guilhermevaladares7.github.io/portfolio/)
   > 💻 Hospedado de graça no **GitHub Pages**, publicado automaticamente pelo GitHub Actions a cada push na `main`.
+* 🎨 **Wireframes no Figma:** [Wireframes - Portfólio Guilherme Valadares](https://www.figma.com/design/QlOykU8jWTYN772jZ6nlbw/Wireframes---Portf%C3%B3lio-Guilherme-Valadares)
+  > Telas de média fidelidade do computador e do celular, com anotações.
 * 🏢 **Aurea:** [auereastack.com.br](https://auereastack.com.br/)
   > O meu projeto de sites, sistemas e automações com IA para pequenos negócios. O portfólio usa as cores, as fontes, o logo e o mascote dele.
 
@@ -144,6 +146,8 @@ O objetivo é apresentar a minha trajetória, minhas habilidades, meus projetos 
 ## 📐 Wireframes
 
 Wireframes de média fidelidade das cinco seções, no computador (1440 × 900) e no celular (390 × 844), mais o menu aberto do celular. As anotações em azul explicam o comportamento de cada tela.
+
+🎨 **[Abrir os wireframes no Figma](https://www.figma.com/design/QlOykU8jWTYN772jZ6nlbw/Wireframes---Portf%C3%B3lio-Guilherme-Valadares)**
 
 <img src="docs/wireframes/visao-geral.png" alt="Visão geral dos wireframes do computador e do celular" width="800px">
 
