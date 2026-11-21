@@ -63,21 +63,21 @@ const lastAngle = Math.atan2(planets[planets.length - 1].position.z, planets[pla
 
 export const shots: Shot[] = [
   {
-    position: new Vector3(0, 78, 112),
-    target: new Vector3(0, -6, 0),
-    targetNarrow: new Vector3(0, -6, 0),
+    position: new Vector3(18, 52, 92),
+    target: new Vector3(10, -8, 0),
+    targetNarrow: new Vector3(0, -14, 0),
   },
-  shotAround(homeworld, 10, 3.2, 3.4, 1.8),
+  shotAround(homeworld, 15, 3.6, 4.6, 2.6),
   ...planets.map((p) => shotAround(p.position, 7.5 + p.size * 1.6, 2.4, 2.9 + p.size * 0.4, 1.6 + p.size * 0.3)),
   shotAround(constellationCenter, 17, 3.5, 5.5, 2.2),
   (() => {
     const dir = new Vector3(Math.cos(lastAngle + 0.9), 0, Math.sin(lastAngle + 0.9))
-    const position = dir.clone().multiplyScalar(14).add(new Vector3(0, 3.4, 0))
+    const position = dir.clone().multiplyScalar(16).add(new Vector3(0, 1.6, 0))
     const forward = position.clone().negate().normalize()
     const right = new Vector3().crossVectors(forward, UP).normalize()
     return {
       position,
-      target: new Vector3().addScaledVector(right, -4.2),
+      target: new Vector3().addScaledVector(right, -5.2),
       targetNarrow: new Vector3(0, -3.2, 0),
     }
   })(),

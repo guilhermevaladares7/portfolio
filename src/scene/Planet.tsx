@@ -52,15 +52,15 @@ const fragment = `
 
   void main() {
     vec3 n = normalize(vNormal);
-    vec3 l = normalize(-vWorld);
     vec3 v = normalize(cameraPosition - vWorld);
+    vec3 l = normalize(v + normalize(-vWorld) * 0.6 + vec3(0.0, 0.7, 0.0));
     vec3 q = normalize(vLocal);
     float bands = fbm(vec3(q.x * 1.6, q.y * 6.0 + uSeed, q.z * 1.6) + uTime * 0.02);
     float spots = fbm(q * 4.0 + uSeed * 3.0);
     vec3 base = mix(uDeep, uColor, smoothstep(0.25, 0.8, bands * 0.75 + spots * 0.4));
     float diffuse = max(dot(n, l), 0.0);
     float rim = pow(1.0 - max(dot(n, v), 0.0), 2.6);
-    vec3 col = base * (0.16 + diffuse * 0.95) + uColor * rim * (0.55 + uGlow * 0.8);
+    vec3 col = base * (0.1 + diffuse * 1.05) + uColor * rim * (0.55 + uGlow * 0.8);
     gl_FragColor = vec4(col, 1.0);
   }
 `

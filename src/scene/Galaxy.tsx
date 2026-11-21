@@ -17,7 +17,7 @@ const vertex = `
     float s = sin(turn);
     vec3 p = vec3(position.x * c - position.z * s, position.y, position.x * s + position.z * c);
     vec4 mv = modelViewMatrix * vec4(p, 1.0);
-    gl_PointSize = min(aSize * uPixel * (70.0 / -mv.z), 42.0);
+    gl_PointSize = clamp(aSize * uPixel * (170.0 / -mv.z), 1.2, 40.0);
     gl_Position = projectionMatrix * mv;
     vColor = aColor;
   }
@@ -55,10 +55,13 @@ export function Galaxy({ count }: { count: number }) {
     const dust = [new Color('#36e2b4'), new Color('#ff3d7f'), new Color('#8fd0ff')]
     const c = new Color()
 
+    const haze = Math.floor(count / 16)
+
     for (let i = 0; i < count; i++) {
-      const r = Math.pow(rand(), 1.55) * GALAXY_RADIUS + 1.8
+      const cloud = i < haze
+      const r = Math.pow(rand(), 1.35) * (GALAXY_RADIUS - 7) + 7
       const arm = i % ARMS
-      const spread = 0.35 + r * 0.075
+      const spread = (0.35 + r * 0.075) * (cloud ? 1.6 : 1)
       const angle = (arm / ARMS) * Math.PI * 2 + r * SPIN + gauss(rand) * 0.11
       const x = Math.cos(angle) * r + gauss(rand) * spread
       const z = Math.sin(angle) * r + gauss(rand) * spread
@@ -72,9 +75,9 @@ export function Galaxy({ count }: { count: number }) {
       if (t < 0.35) c.copy(core).lerp(mid, t / 0.35)
       else c.copy(mid).lerp(edge, Math.min(1, (t - 0.35) / 0.5))
       if (rand() < 0.08) c.copy(dust[i % dust.length])
-      const bright = 0.55 + rand() * 0.6
+      const bright = cloud ? 0.05 + rand() * 0.05 : 0.6 + rand() * 0.6
       colors.set([c.r * bright, c.g * bright, c.b * bright], i * 3)
-      sizes[i] = rand() < 0.015 ? 2.6 + rand() * 2 : 0.6 + rand() * 1.1
+      sizes[i] = cloud ? 9 + rand() * 9 : rand() < 0.015 ? 2.6 + rand() * 2 : 0.6 + rand() * 1.1
     }
 
     return { positions, colors, sizes, radii }
