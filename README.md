@@ -7,7 +7,7 @@
   <tr>
     <td width="800px">
       <div align="justify">
-        Este é o meu <b>portfólio profissional</b>, feito para o trabalho de <i>Desenvolvimento e Integração de Aplicações Web</i> do curso de <b>Engenharia de Software da PUC Minas</b>. Ele apresenta quem eu sou, meus <b>projetos em linha do tempo</b>, minhas <b>experiências</b> e as formas de <b>contato</b>, com a identidade visual da <a href="https://auereastack.com.br/">Aurea</a>, a empresa que eu fundei. Ao entrar, a tela liga como um monitor antigo e aparece uma galáxia em 3D. Rolando a página, você viaja por ela: passa pelo planeta de onde eu saí, por um planeta para cada projeto, por uma constelação com as experiências e termina no buraco negro do centro, onde fica o formulário de contato.
+        Este é o meu <b>portfólio profissional</b>, feito para o trabalho de <i>Desenvolvimento e Integração de Aplicações Web</i> do curso de <b>Engenharia de Software da PUC Minas</b>. Ele apresenta quem eu sou, meus <b>projetos em linha do tempo</b>, minhas <b>experiências</b> e as formas de <b>contato</b>, com a identidade visual da <a href="https://auereastack.com.br/">Aurea</a>, o meu projeto de sites, sistemas e automações. Ao entrar, a tela liga como um monitor antigo e aparece uma galáxia em 3D. Rolando a página, você viaja por ela: passa pelo planeta de onde eu saí, por um planeta para cada projeto, por uma constelação com as experiências e termina no buraco negro do centro, onde fica o formulário de contato.
       </div>
     </td>
     <td>
@@ -61,7 +61,7 @@
 * 🌐 **Site publicado:** [guilhermevaladares7.github.io/portfolio](https://guilhermevaladares7.github.io/portfolio/)
   > 💻 Hospedado de graça no **GitHub Pages**, publicado automaticamente pelo GitHub Actions a cada push na `main`.
 * 🏢 **Aurea:** [auereastack.com.br](https://auereastack.com.br/)
-  > A empresa de sites, sistemas e automações com IA que eu fundei. O portfólio usa as cores, as fontes, o logo e o mascote dela.
+  > O meu projeto de sites, sistemas e automações com IA para pequenos negócios. O portfólio usa as cores, as fontes, o logo e o mascote dele.
 
 ---
 
@@ -86,8 +86,8 @@ O objetivo é apresentar a minha trajetória, minhas habilidades, meus projetos 
 
 ## ✨ Funcionalidades Principais
 
-- 📺 **Abertura épica:** a tela liga como um monitor CRT e a câmera começa a 7 mil unidades de distância, com a nossa galáxia do tamanho de um ponto entre centenas de outras. Ela mergulha em escala logarítmica, passa voando por galáxias no caminho, abre o campo de visão no meio do voo para dar sensação de velocidade e para na vista da galáxia, enquanto três frases mostram o tamanho do universo. Dá para pular.
-- 🌌 **Universo em 3D guiado pela rolagem:** galáxia espiral com 36 mil partículas, centenas de galáxias distantes, planetas com superfície procedural, constelação e buraco negro com disco de acreção, todos em shaders próprios.
+- 📺 **Abertura épica:** a tela liga como um monitor CRT e a câmera aparece rente à superfície de um planeta gigante, com o anel cortando o céu e o centro da galáxia nascendo no horizonte. Depois ela sobe, se afasta até o planeta virar um ponto e abre a vista da galáxia inteira, com centenas de outras galáxias ao fundo. Dá para pular.
+- 🌌 **Universo em 3D guiado pela rolagem:** galáxia espiral com 24 mil partículas, centenas de galáxias distantes, planetas com superfície procedural, constelação e buraco negro com disco de acreção, todos em shaders próprios.
 - 🪐 **Planetas clicáveis:** clicar num planeta leva até o projeto dele. Passar o mouse destaca o projeto na linha do tempo.
 - 🗂️ **Linha do tempo dos projetos:** oito projetos em ordem cronológica, cada um com nome, descrição, tecnologias, link do GitHub, link do site no ar (quando existe) e um GIF dele funcionando.
 - 💼 **Experiências organizadas:** empresa ou instituição, cargo ou atividade, período e descrição de cada etapa.
@@ -333,9 +333,9 @@ O projeto não tem testes automatizados: é uma página de apresentação, sem r
 
 ## 👤 Autor
 
-| 👤 Nome | :octocat: GitHub | 💼 LinkedIn | 📤 Gmail |
-|---------|-----------------|-------------|-----------|
-| Guilherme Ferreira Valadares | <div align="center"><a href="https://github.com/guilhermevaladares7"><img src="https://joaopauloaramuni.github.io/image/github6.png" width="50px" height="50px"></a></div> | <div align="center"><a href="https://www.linkedin.com/in/guilherme-ferreira-valadares-43009640b/"><img src="https://joaopauloaramuni.github.io/image/linkedin2.png" width="50px" height="50px"></a></div> | <div align="center"><a href="mailto:glhrmvaladares@gmail.com"><img src="https://joaopauloaramuni.github.io/image/gmail3.png" width="50px" height="50px"></a></div> |
+| 👤 Nome | 🖼️ Foto | :octocat: GitHub | 💼 LinkedIn | 📤 Gmail |
+|---------|----------|-----------------|-------------|-----------|
+| Guilherme Ferreira Valadares | <div align="center"><img src="public/guilherme.jpg" width="70px" height="70px"></div> | <div align="center"><a href="https://github.com/guilhermevaladares7"><img src="https://joaopauloaramuni.github.io/image/github6.png" width="50px" height="50px"></a></div> | <div align="center"><a href="https://www.linkedin.com/in/guilherme-ferreira-valadares-43009640b/"><img src="https://joaopauloaramuni.github.io/image/linkedin2.png" width="50px" height="50px"></a></div> | <div align="center"><a href="mailto:glhrmvaladares@gmail.com"><img src="https://joaopauloaramuni.github.io/image/gmail3.png" width="50px" height="50px"></a></div> |
 
 ---
 
