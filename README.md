@@ -191,7 +191,9 @@ flowchart LR
 
 ### 🔑 Variáveis de Ambiente
 
-O formulário envia e-mail pelo [EmailJS](https://www.emailjs.com/). Copie o arquivo de exemplo:
+O formulário envia e-mail pelo [EmailJS](https://www.emailjs.com/). No site publicado, os IDs e a chave pública ficam em `.env.production`, que vai no repositório: a chave pública do EmailJS é feita para ficar no código do navegador, e a chave privada não é usada.
+
+Para usar outra conta do EmailJS no desenvolvimento, copie o arquivo de exemplo:
 
 ```bash
 cp .env.example .env
@@ -210,7 +212,7 @@ O template recebe os campos `name`, `email`, `message` e `title` (também vão `
 > [!TIP]
 > Sem essas variáveis o site funciona normalmente: o botão "Enviar sinal" abre o app de e-mail de quem visita, com a mensagem já escrita.
 
-No deploy, as mesmas três variáveis ficam em **Settings → Secrets and variables → Actions** do repositório, com os mesmos nomes.
+No deploy, o build lê as três variáveis do `.env.production`.
 
 ### 📦 Instalação de Dependências
 
@@ -248,7 +250,7 @@ npm run lint
 O deploy é automático. A cada push na `main`, o workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
 
 1. instala as dependências com `npm ci`;
-2. roda `npm run build` com o caminho do repositório (`/portfolio/`) e as chaves do EmailJS que estão nos secrets;
+2. roda `npm run build` com o caminho do repositório (`/portfolio/`), usando as chaves do EmailJS do `.env.production`;
 3. publica a pasta `dist` no GitHub Pages.
 
 Para ativar num fork: **Settings → Pages → Source: GitHub Actions**.
@@ -261,6 +263,7 @@ Para ativar num fork: **Settings → Pages → Source: GitHub Actions**.
 .
 ├── .github/workflows/deploy.yml   # 🤖 Build e deploy no GitHub Pages
 ├── .env.example                   # 🧩 Variáveis do EmailJS (sem valores)
+├── .env.production                # 📨 IDs e chave pública do EmailJS usados no site publicado
 ├── docs/                          # 🖼️ Logo, capturas de tela e wireframes (SVG)
 ├── public/
 │   ├── favicon.svg                # ⭐ Ícone da aba, o A da Aurea
