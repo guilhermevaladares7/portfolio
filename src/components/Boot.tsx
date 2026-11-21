@@ -1,23 +1,17 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { copy, scaleLines } from '../data/copy'
+import { copy } from '../data/copy'
 import { useLang } from '../i18n'
 import { journey } from '../scene/journey'
 import { AureaLogo } from './AureaLogo'
 
 type Phase = 'dark' | 'line' | 'flash' | 'flight' | 'done'
 
-const FLIGHT = 8600
-const CUES = [
-  [0.04, 0.3],
-  [0.34, 0.6],
-  [0.64, 0.86],
-]
+const FLIGHT = 7800
 
 export function Boot({ onDone }: { onDone: () => void }) {
   const { t } = useLang()
   const [phase, setPhase] = useState<Phase>(journey.reduced ? 'done' : 'dark')
-  const [caption, setCaption] = useState(-1)
   const frame = useRef(0)
   const finished = useRef(false)
 
@@ -26,7 +20,6 @@ export function Boot({ onDone }: { onDone: () => void }) {
     finished.current = true
     cancelAnimationFrame(frame.current)
     journey.intro = 1
-    setCaption(-1)
     setPhase('done')
     onDone()
   }, [onDone])
@@ -43,15 +36,12 @@ export function Boot({ onDone }: { onDone: () => void }) {
       const step = (now: number) => {
         const p = Math.min(1, (now - start) / FLIGHT)
         journey.intro = p
-        const cue = CUES.findIndex(([a, b]) => p >= a && p < b)
-        setCaption((prev) => (prev === cue ? prev : cue))
-        if (p >= 0.9 && !finished.current) {
+        if (p >= 0.88 && !finished.current) {
           finished.current = true
           setPhase('done')
           onDone()
         }
         if (p < 1) frame.current = requestAnimationFrame(step)
-        else setCaption(-1)
       }
       frame.current = requestAnimationFrame(step)
     }
@@ -110,23 +100,6 @@ export function Boot({ onDone }: { onDone: () => void }) {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <div className="pointer-events-none fixed inset-0 z-[90] grid place-items-center px-6" aria-live="polite">
-        <AnimatePresence mode="wait">
-          {caption >= 0 && (
-            <motion.p
-              key={caption}
-              initial={{ opacity: 0, y: 18, filter: 'blur(8px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, y: -14, filter: 'blur(8px)' }}
-              transition={{ duration: 0.7, ease: [0.2, 0.9, 0.2, 1] }}
-              className="wide max-w-[22ch] text-center text-[clamp(26px,3.6vw,52px)] font-bold leading-[1.08] tracking-[-0.02em] [text-shadow:0_4px_40px_rgba(0,0,0,0.9)]"
-            >
-              {t(scaleLines[caption])}
-            </motion.p>
-          )}
-        </AnimatePresence>
-      </div>
 
       <AnimatePresence>
         {phase === 'flight' && (

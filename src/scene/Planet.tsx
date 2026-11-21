@@ -21,6 +21,7 @@ const fragment = `
   uniform float uSeed;
   uniform float uTime;
   uniform float uGlow;
+  uniform float uDetail;
   varying vec3 vNormal;
   varying vec3 vWorld;
   varying vec3 vLocal;
@@ -60,6 +61,12 @@ const fragment = `
     vec3 base = mix(uDeep, uColor, smoothstep(0.25, 0.8, bands * 0.75 + spots * 0.4));
     float diffuse = max(dot(n, l), 0.0);
     float rim = pow(1.0 - max(dot(n, v), 0.0), 2.6);
+    if (uDetail > 0.5) {
+      float fine = noise(q * 26.0 + uSeed) * 0.6 + noise(q * 70.0) * 0.4;
+      base *= 0.82 + fine * 0.4;
+      float cloud = smoothstep(0.5, 0.78, fbm(q * 3.4 + vec3(uTime * 0.012, 0.0, uSeed)));
+      base = mix(base, vec3(0.92, 1.0, 0.98), cloud * 0.55);
+    }
     vec3 col = base * (0.1 + diffuse * 1.05) + uColor * rim * (0.55 + uGlow * 0.8);
     gl_FragColor = vec4(col, 1.0);
   }
@@ -94,12 +101,13 @@ type Props = {
   size: number
   ring?: boolean
   seed: number
+  detail?: number
   active?: () => boolean
   onSelect?: () => void
   onHover?: (on: boolean) => void
 }
 
-export function Planet({ position, color, size, ring, seed, active, onSelect, onHover }: Props) {
+export function Planet({ position, color, size, ring, seed, detail = 1, active, onSelect, onHover }: Props) {
   const group = useRef<Group>(null)
   const surface = useRef<ShaderMaterial>(null)
   const atmo = useRef<ShaderMaterial>(null)
@@ -109,10 +117,10 @@ export function Planet({ position, color, size, ring, seed, active, onSelect, on
     const c = new Color(color)
     const deep = c.clone().multiplyScalar(0.28).lerp(new Color('#0a0d1a'), 0.35)
     return {
-      surface: { uColor: { value: c }, uDeep: { value: deep }, uSeed: { value: seed }, uTime: { value: 0 }, uGlow: { value: 0 } },
+      surface: { uColor: { value: c }, uDeep: { value: deep }, uSeed: { value: seed }, uTime: { value: 0 }, uGlow: { value: 0 }, uDetail: { value: detail > 1 ? 1 : 0 } },
       atmo: { uColor: { value: c.clone() }, uGlow: { value: 0 } },
     }
-  }, [color, seed])
+  }, [color, seed, detail])
 
   useFrame((state, delta) => {
     const on = active?.() ?? false
@@ -156,11 +164,11 @@ export function Planet({ position, color, size, ring, seed, active, onSelect, on
             onSelect()
           }}
         >
-          <sphereGeometry args={[size, 36, 28]} />
+          <sphereGeometry args={[size, Math.round(36 * detail), Math.round(28 * detail)]} />
           <shaderMaterial ref={surface} vertexShader={vertex} fragmentShader={fragment} uniforms={uniforms.surface} />
         </mesh>
         <mesh scale={1.14}>
-          <sphereGeometry args={[size, 24, 18]} />
+          <sphereGeometry args={[size, Math.round(24 * detail), Math.round(18 * detail)]} />
           <shaderMaterial
             ref={atmo}
             vertexShader={atmoVertex}
@@ -174,7 +182,7 @@ export function Planet({ position, color, size, ring, seed, active, onSelect, on
         </mesh>
         {ring && (
           <mesh rotation={[Math.PI / 2.35, 0.2, 0]}>
-            <ringGeometry args={[size * 1.45, size * 2.25, 64]} />
+            <ringGeometry args={[size * 1.45, size * 2.25, Math.round(64 * detail)]} />
             <meshBasicMaterial color={color} transparent opacity={0.32} side={DoubleSide} depthWrite={false} blending={AdditiveBlending} />
           </mesh>
         )}

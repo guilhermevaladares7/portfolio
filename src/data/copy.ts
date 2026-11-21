@@ -28,6 +28,7 @@ export const copy = {
     title: { pt: 'Sobre mim', en: 'About me' },
     auri: { pt: 'Esse é o planeta de onde ele saiu.', en: 'This is the planet he came from.' },
     stack: { pt: 'Com o que eu trabalho', en: 'What I work with' },
+    photo: { pt: 'Foto do Guilherme', en: 'Photo of Guilherme' },
   },
   projects: {
     title: { pt: 'Projetos', en: 'Projects' },
@@ -86,12 +87,3 @@ export const copy = {
     top: { pt: 'Voltar ao início', en: 'Back to start' },
   },
 } satisfies Record<string, Copy>
-
-export const scaleLines: Text[] = [
-  {
-    pt: 'O universo observável tem uns 93 bilhões de anos-luz de ponta a ponta.',
-    en: 'The observable universe is about 93 billion light-years across.',
-  },
-  { pt: 'Lá dentro cabem centenas de bilhões de galáxias.', en: 'Hundreds of billions of galaxies fit inside it.' },
-  { pt: 'Esta é uma delas.', en: 'This is one of them.' },
-]

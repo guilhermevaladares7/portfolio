@@ -13,10 +13,8 @@ function onArm(r: number, arm: number, drift = 0, y = 0) {
   return new Vector3(Math.cos(angle) * r, y, Math.sin(angle) * r)
 }
 
-export const INTRO_DIR = new Vector3(0.32, 0.58, 1).normalize()
-export const INTRO_DISTANCE = 7200
-
 export const homeworld = onArm(60, 0, 0.12, 1.2)
+export const HOMEWORLD_SIZE = 2.1
 
 export const planets = projects.map((p, i) => {
   const r = 52 - (i * 38) / (projects.length - 1)
@@ -85,3 +83,31 @@ export const shots: Shot[] = [
     }
   })(),
 ]
+
+const toCenter = homeworld.clone().setY(0).negate().normalize()
+const across = new Vector3().crossVectors(UP, toCenter).normalize()
+const R = HOMEWORLD_SIZE
+
+const around = (up: number, center: number, side: number, distance: number) =>
+  homeworld
+    .clone()
+    .add(new Vector3().addScaledVector(UP, up).addScaledVector(toCenter, center).addScaledVector(across, side).normalize().multiplyScalar(R * distance))
+
+export const introPath = {
+  position: [
+    around(1, -0.55, 0.12, 1.2),
+    around(1, -0.05, 0.05, 1.26),
+    around(0.75, 0.55, -0.35, 1.9),
+    around(0.55, 0.6, -0.9, 6),
+    around(0.5, -0.2, -1, 24),
+    shots[0].position,
+  ],
+  target: [
+    new Vector3(0, -2, 0),
+    new Vector3(0, -2, 0),
+    homeworld.clone().addScaledVector(toCenter, 6),
+    homeworld.clone(),
+    homeworld.clone(),
+    shots[0].target,
+  ],
+}

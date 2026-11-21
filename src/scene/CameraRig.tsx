@@ -2,9 +2,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { useMemo, useRef } from 'react'
 import { CatmullRomCurve3, MathUtils, PerspectiveCamera, Vector3 } from 'three'
 import { journey } from './journey'
-import { INTRO_DIR, INTRO_DISTANCE, shots } from './layout'
-
-const START_LOG = Math.log(INTRO_DISTANCE)
+import { introPath, shots } from './layout'
 
 function hold(f: number) {
   return MathUtils.smootherstep(f, 0.22, 0.78)
@@ -19,6 +17,8 @@ export function CameraRig() {
       position: new CatmullRomCurve3(shots.map((s) => s.position), false, ...opts),
       wide: new CatmullRomCurve3(shots.map((s) => s.target), false, ...opts),
       narrow: new CatmullRomCurve3(shots.map((s) => s.targetNarrow), false, ...opts),
+      introPosition: new CatmullRomCurve3(introPath.position, false, ...opts),
+      introTarget: new CatmullRomCurve3(introPath.target, false, ...opts),
     }
   }, [])
 
@@ -28,7 +28,6 @@ export function CameraRig() {
   const temp = useMemo(() => new Vector3(), [])
   const started = useRef(false)
   const baseFov = useRef(0)
-  const dir = useMemo(() => new Vector3(), [])
 
   useFrame((state, delta) => {
     const camera = state.camera
@@ -45,17 +44,14 @@ export function CameraRig() {
 
     const flying = journey.intro < 1
     if (flying) {
-      const e = MathUtils.smootherstep(journey.intro, 0, 1)
-      const end = goalPos.current.length()
-      const distance = Math.exp(MathUtils.lerp(START_LOG, Math.log(end), e))
-      dir.copy(INTRO_DIR).lerp(temp.copy(goalPos.current).normalize(), e).normalize()
-      goalPos.current.copy(dir).multiplyScalar(distance)
-      goalLook.current.multiplyScalar(e)
+      const e = Math.pow(MathUtils.smootherstep(journey.intro, 0, 1), 1.6)
+      curves.introPosition.getPoint(e, goalPos.current)
+      curves.introTarget.getPoint(e, goalLook.current)
     }
 
     const cam = camera as PerspectiveCamera
     if (!baseFov.current) baseFov.current = cam.fov
-    const warp = flying ? Math.pow(Math.sin(Math.PI * journey.intro), 2) * 24 : 0
+    const warp = flying ? Math.pow(Math.sin(Math.PI * MathUtils.smoothstep(journey.intro, 0.45, 1)), 2) * 14 : 0
     const fov = baseFov.current + warp
     if (Math.abs(cam.fov - fov) > 0.01) {
       cam.fov = fov
