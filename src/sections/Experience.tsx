@@ -3,7 +3,7 @@ import { ArrowIcon } from '../components/icons'
 import { copy } from '../data/copy'
 import { experiences } from '../data/experiences'
 import { useLang } from '../i18n'
-import { STOPS } from '../scene/layout'
+import { STOPS } from '../scene/stops'
 
 export function Experience() {
   const { t } = useLang()

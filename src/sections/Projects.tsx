@@ -5,7 +5,7 @@ import { projects } from '../data/projects'
 import { useLang } from '../i18n'
 import { cn } from '../lib/cn'
 import { goToStop } from '../scene/journey'
-import { STOPS } from '../scene/layout'
+import { STOPS } from '../scene/stops'
 
 const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`
 

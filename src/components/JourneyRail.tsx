@@ -2,7 +2,7 @@ import { copy } from '../data/copy'
 import { useLang } from '../i18n'
 import { cn } from '../lib/cn'
 import { goToStop } from '../scene/journey'
-import { STOPS } from '../scene/layout'
+import { STOPS } from '../scene/stops'
 import { SECTIONS } from '../lib/sections'
 
 export function JourneyRail({ stop }: { stop: number }) {

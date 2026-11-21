@@ -4,7 +4,7 @@ import { copy } from '../data/copy'
 import { profile } from '../data/profile'
 import { useLang } from '../i18n'
 import { goToStop } from '../scene/journey'
-import { STOPS } from '../scene/layout'
+import { STOPS } from '../scene/stops'
 
 function Word({ text, delay }: { text: string; delay: number }) {
   return (

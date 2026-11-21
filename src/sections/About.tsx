@@ -5,7 +5,7 @@ import { copy } from '../data/copy'
 import { about } from '../data/profile'
 import { useLang } from '../i18n'
 import { cn } from '../lib/cn'
-import { STOPS } from '../scene/layout'
+import { STOPS } from '../scene/stops'
 
 export function About() {
   const { t, lang, setLang } = useLang()

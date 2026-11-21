@@ -5,7 +5,7 @@ import { useLang } from '../i18n'
 import { cn } from '../lib/cn'
 import { goToStop } from '../scene/journey'
 import { SECTIONS } from '../lib/sections'
-import { STOPS } from '../scene/layout'
+import { STOPS } from '../scene/stops'
 import { AureaMark } from './AureaLogo'
 
 export function LangSwitch({ className }: { className?: string }) {

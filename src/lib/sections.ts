@@ -1,5 +1,5 @@
 import { copy } from '../data/copy'
-import { STOPS } from '../scene/layout'
+import { STOPS } from '../scene/stops'
 
 export const SECTIONS = [
   { key: 'about', stop: STOPS.about, until: STOPS.firstProject - 1, label: copy.nav.about },

@@ -9,7 +9,7 @@ import { useLang } from '../i18n'
 import { cn } from '../lib/cn'
 import { sendMessage, type ContactForm } from '../lib/sendMessage'
 import { goToStop, journey } from '../scene/journey'
-import { STOPS } from '../scene/layout'
+import { STOPS } from '../scene/stops'
 
 type Status = 'idle' | 'sending' | 'sent' | 'mailto' | 'failed'
 
