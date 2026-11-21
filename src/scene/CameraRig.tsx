@@ -1,10 +1,10 @@
 import { useFrame, useThree } from '@react-three/fiber'
 import { useMemo, useRef } from 'react'
-import { CatmullRomCurve3, MathUtils, Vector3 } from 'three'
+import { CatmullRomCurve3, MathUtils, PerspectiveCamera, Vector3 } from 'three'
 import { journey } from './journey'
-import { shots } from './layout'
+import { INTRO_DIR, INTRO_DISTANCE, shots } from './layout'
 
-const FAR = new Vector3(0, 260, 420)
+const START_LOG = Math.log(INTRO_DISTANCE)
 
 function hold(f: number) {
   return MathUtils.smootherstep(f, 0.22, 0.78)
@@ -27,6 +27,8 @@ export function CameraRig() {
   const look = useRef(new Vector3(0, 0, 0))
   const temp = useMemo(() => new Vector3(), [])
   const started = useRef(false)
+  const baseFov = useRef(0)
+  const dir = useMemo(() => new Vector3(), [])
 
   useFrame((state, delta) => {
     const camera = state.camera
@@ -41,8 +43,31 @@ export function CameraRig() {
 
     if (narrow) goalPos.current.addScaledVector(temp.copy(goalPos.current).sub(goalLook.current).normalize(), 3.5)
 
-    const intro = MathUtils.smootherstep(journey.intro, 0, 1)
-    goalPos.current.lerpVectors(FAR, goalPos.current, intro)
+    const flying = journey.intro < 1
+    if (flying) {
+      const e = MathUtils.smootherstep(journey.intro, 0, 1)
+      const end = goalPos.current.length()
+      const distance = Math.exp(MathUtils.lerp(START_LOG, Math.log(end), e))
+      dir.copy(INTRO_DIR).lerp(temp.copy(goalPos.current).normalize(), e).normalize()
+      goalPos.current.copy(dir).multiplyScalar(distance)
+      goalLook.current.multiplyScalar(e)
+    }
+
+    const cam = camera as PerspectiveCamera
+    if (!baseFov.current) baseFov.current = cam.fov
+    const warp = flying ? Math.pow(Math.sin(Math.PI * journey.intro), 2) * 24 : 0
+    const fov = baseFov.current + warp
+    if (Math.abs(cam.fov - fov) > 0.01) {
+      cam.fov = fov
+      cam.updateProjectionMatrix()
+    }
+
+    if (flying) {
+      camera.position.copy(goalPos.current)
+      look.current.copy(goalLook.current)
+      camera.lookAt(look.current)
+      return
+    }
 
     if (!journey.reduced && !narrow) {
       goalPos.current.x += journey.pointer.x * 0.9

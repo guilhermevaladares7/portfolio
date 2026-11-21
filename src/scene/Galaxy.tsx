@@ -1,6 +1,7 @@
 import { useFrame } from '@react-three/fiber'
 import { useMemo, useRef } from 'react'
-import { AdditiveBlending, Color, ShaderMaterial } from 'three'
+import { AdditiveBlending, Color, MathUtils, ShaderMaterial, SpriteMaterial } from 'three'
+import { glowTexture } from './glow'
 import { seeded } from '../lib/random'
 import { ARMS, GALAXY_RADIUS, SPIN } from './layout'
 
@@ -10,6 +11,7 @@ const vertex = `
   attribute vec3 aColor;
   uniform float uTime;
   uniform float uPixel;
+  uniform float uFade;
   varying vec3 vColor;
   void main() {
     float turn = uTime * 0.035 * (8.0 / (aRadius + 8.0));
@@ -19,7 +21,7 @@ const vertex = `
     vec4 mv = modelViewMatrix * vec4(p, 1.0);
     gl_PointSize = clamp(aSize * uPixel * (170.0 / -mv.z), 1.2, 18.0);
     gl_Position = projectionMatrix * mv;
-    vColor = aColor;
+    vColor = aColor * uFade;
   }
 `
 
@@ -83,13 +85,25 @@ export function Galaxy({ count }: { count: number }) {
     return { positions, colors, sizes, radii }
   }, [count])
 
-  const uniforms = useMemo(() => ({ uTime: { value: 0 }, uPixel: { value: Math.min(window.devicePixelRatio, 1.6) } }), [])
+  const uniforms = useMemo(() => ({ uTime: { value: 0 }, uPixel: { value: Math.min(window.devicePixelRatio, 1.25) }, uFade: { value: 0 } }), [])
+
+  const impostor = useRef<SpriteMaterial>(null)
+  const spiral = glowTexture('spiral')
 
   useFrame((state) => {
-    if (material.current) material.current.uniforms.uTime.value = state.clock.elapsedTime
+    const d = state.camera.position.length()
+    if (material.current) {
+      material.current.uniforms.uTime.value = state.clock.elapsedTime
+      material.current.uniforms.uFade.value = 1 - MathUtils.smoothstep(d, 420, 2400)
+    }
+    if (impostor.current) impostor.current.opacity = MathUtils.smoothstep(d, 300, 1500) * 0.95
   })
 
   return (
+    <group>
+    <sprite scale={[210, 210, 1]}>
+      <spriteMaterial ref={impostor} map={spiral} color="#ffe2c4" transparent opacity={0} depthWrite={false} blending={AdditiveBlending} />
+    </sprite>
     <points frustumCulled={false}>
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[geometry.positions, 3]} />
@@ -107,5 +121,6 @@ export function Galaxy({ count }: { count: number }) {
         blending={AdditiveBlending}
       />
     </points>
+    </group>
   )
 }

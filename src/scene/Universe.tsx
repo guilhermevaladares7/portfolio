@@ -4,6 +4,7 @@ import { AdaptiveQuality } from './AdaptiveQuality'
 import { BlackHole } from './BlackHole'
 import { CameraRig } from './CameraRig'
 import { Constellation } from './Constellation'
+import { DistantGalaxies } from './DistantGalaxies'
 import { Galaxy } from './Galaxy'
 import { goToStop, journey } from './journey'
 import { homeworld, planets } from './layout'
@@ -18,13 +19,14 @@ export default function Universe({ onHoverPlanet }: { onHoverPlanet?: (index: nu
     <Canvas
       className="!fixed inset-0"
       dpr={Math.min(window.devicePixelRatio, 1.25)}
-      camera={{ fov: small ? 62 : 50, near: 0.1, far: 2000, position: [0, 260, 420] }}
+      camera={{ fov: small ? 62 : 50, near: 0.1, far: 24000, position: [2300, 4200, 7200] }}
       gl={{ antialias: false, powerPreference: 'high-performance', stencil: false }}
       onCreated={({ gl }) => gl.setClearColor('#04060b')}
     >
       <AdaptiveQuality />
       <CameraRig />
       <Starfield count={small ? 1200 : 2600} />
+      <DistantGalaxies count={small ? 90 : 180} />
       <Galaxy count={small ? 14000 : 36000} />
       <BlackHole count={small ? 1500 : 4000} />
       <Planet position={homeworld} color="#36e2b4" size={2.1} seed={0.4} ring active={() => Math.round(journey.j) === STOPS.about} />

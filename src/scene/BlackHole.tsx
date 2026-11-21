@@ -105,7 +105,7 @@ export function BlackHole({ count }: { count: number }) {
   }, [count])
 
   const uniforms = useMemo(
-    () => ({ uTime: { value: 0 }, uPixel: { value: Math.min(window.devicePixelRatio, 1.6) }, uBoost: { value: 0 } }),
+    () => ({ uTime: { value: 0 }, uPixel: { value: Math.min(window.devicePixelRatio, 1.25) }, uBoost: { value: 0 } }),
     [],
   )
 

@@ -16,6 +16,7 @@ export const copy = {
   },
   boot: {
     line: { pt: 'ligando o universo', en: 'powering up the universe' },
+    skip: { pt: 'Pular', en: 'Skip' },
   },
   hero: {
     start: { pt: 'Começar a viagem', en: 'Start the journey' },
@@ -85,3 +86,12 @@ export const copy = {
     top: { pt: 'Voltar ao início', en: 'Back to start' },
   },
 } satisfies Record<string, Copy>
+
+export const scaleLines: Text[] = [
+  {
+    pt: 'O universo observável tem uns 93 bilhões de anos-luz de ponta a ponta.',
+    en: 'The observable universe is about 93 billion light-years across.',
+  },
+  { pt: 'Lá dentro cabem centenas de bilhões de galáxias.', en: 'Hundreds of billions of galaxies fit inside it.' },
+  { pt: 'Esta é uma delas.', en: 'This is one of them.' },
+]

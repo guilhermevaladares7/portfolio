@@ -13,6 +13,9 @@ function onArm(r: number, arm: number, drift = 0, y = 0) {
   return new Vector3(Math.cos(angle) * r, y, Math.sin(angle) * r)
 }
 
+export const INTRO_DIR = new Vector3(0.32, 0.58, 1).normalize()
+export const INTRO_DISTANCE = 7200
+
 export const homeworld = onArm(60, 0, 0.12, 1.2)
 
 export const planets = projects.map((p, i) => {

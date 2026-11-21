@@ -1,6 +1,6 @@
 import { useFrame } from '@react-three/fiber'
 import { useMemo, useRef } from 'react'
-import { AdditiveBlending, ShaderMaterial } from 'three'
+import { AdditiveBlending, Points, ShaderMaterial } from 'three'
 import { seeded } from '../lib/random'
 
 const vertex = `
@@ -50,14 +50,17 @@ export function Starfield({ count }: { count: number }) {
     return { positions, sizes, seeds }
   }, [count])
 
-  const uniforms = useMemo(() => ({ uTime: { value: 0 }, uPixel: { value: Math.min(window.devicePixelRatio, 1.6) } }), [])
+  const uniforms = useMemo(() => ({ uTime: { value: 0 }, uPixel: { value: Math.min(window.devicePixelRatio, 1.25) } }), [])
+
+  const group = useRef<Points>(null)
 
   useFrame((state) => {
     if (material.current) material.current.uniforms.uTime.value = state.clock.elapsedTime
+    group.current?.position.copy(state.camera.position)
   })
 
   return (
-    <points frustumCulled={false}>
+    <points ref={group} frustumCulled={false}>
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[data.positions, 3]} />
         <bufferAttribute attach="attributes-aSize" args={[data.sizes, 1]} />
