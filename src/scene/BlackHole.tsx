@@ -143,7 +143,7 @@ export function BlackHole({ count }: { count: number }) {
         <spriteMaterial map={soft} color="#6d5cff" transparent opacity={0.12} depthWrite={false} blending={AdditiveBlending} />
       </sprite>
       <mesh renderOrder={1}>
-        <sphereGeometry args={[2, 48, 48]} />
+        <sphereGeometry args={[2, 32, 24]} />
         <meshBasicMaterial color="#000000" />
       </mesh>
       <sprite ref={halo} scale={[10.8, 10.8, 1]} renderOrder={2}>

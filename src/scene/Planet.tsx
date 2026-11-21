@@ -42,7 +42,7 @@ const fragment = `
   float fbm(vec3 p) {
     float v = 0.0;
     float a = 0.5;
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 3; i++) {
       v += a * noise(p);
       p *= 2.03;
       a *= 0.5;
@@ -156,11 +156,11 @@ export function Planet({ position, color, size, ring, seed, active, onSelect, on
             onSelect()
           }}
         >
-          <sphereGeometry args={[size, 48, 48]} />
+          <sphereGeometry args={[size, 36, 28]} />
           <shaderMaterial ref={surface} vertexShader={vertex} fragmentShader={fragment} uniforms={uniforms.surface} />
         </mesh>
         <mesh scale={1.14}>
-          <sphereGeometry args={[size, 32, 32]} />
+          <sphereGeometry args={[size, 24, 18]} />
           <shaderMaterial
             ref={atmo}
             vertexShader={atmoVertex}
@@ -174,7 +174,7 @@ export function Planet({ position, color, size, ring, seed, active, onSelect, on
         </mesh>
         {ring && (
           <mesh rotation={[Math.PI / 2.35, 0.2, 0]}>
-            <ringGeometry args={[size * 1.45, size * 2.25, 96]} />
+            <ringGeometry args={[size * 1.45, size * 2.25, 64]} />
             <meshBasicMaterial color={color} transparent opacity={0.32} side={DoubleSide} depthWrite={false} blending={AdditiveBlending} />
           </mesh>
         )}

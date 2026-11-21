@@ -55,7 +55,7 @@ export function Galaxy({ count }: { count: number }) {
     const dust = [new Color('#36e2b4'), new Color('#ff3d7f'), new Color('#8fd0ff')]
     const c = new Color()
 
-    const haze = Math.floor(count / 16)
+    const haze = Math.floor(count / 14)
 
     for (let i = 0; i < count; i++) {
       const cloud = i < haze
@@ -75,7 +75,7 @@ export function Galaxy({ count }: { count: number }) {
       if (t < 0.35) c.copy(core).lerp(mid, t / 0.35)
       else c.copy(mid).lerp(edge, Math.min(1, (t - 0.35) / 0.5))
       if (rand() < 0.08) c.copy(dust[i % dust.length])
-      const bright = cloud ? 0.05 + rand() * 0.05 : 0.6 + rand() * 0.6
+      const bright = cloud ? 0.06 + rand() * 0.05 : 0.75 + rand() * 0.65
       colors.set([c.r * bright, c.g * bright, c.b * bright], i * 3)
       sizes[i] = cloud ? 9 + rand() * 9 : rand() < 0.015 ? 2.6 + rand() * 2 : 0.6 + rand() * 1.1
     }

@@ -1,5 +1,6 @@
 import { Canvas } from '@react-three/fiber'
 import { useMemo } from 'react'
+import { AdaptiveQuality } from './AdaptiveQuality'
 import { BlackHole } from './BlackHole'
 import { CameraRig } from './CameraRig'
 import { Constellation } from './Constellation'
@@ -16,15 +17,16 @@ export default function Universe({ onHoverPlanet }: { onHoverPlanet?: (index: nu
   return (
     <Canvas
       className="!fixed inset-0"
-      dpr={[1, small ? 1.4 : 1.6]}
+      dpr={Math.min(window.devicePixelRatio, 1.25)}
       camera={{ fov: small ? 62 : 50, near: 0.1, far: 2000, position: [0, 260, 420] }}
-      gl={{ antialias: !small, powerPreference: 'high-performance' }}
+      gl={{ antialias: false, powerPreference: 'high-performance', stencil: false }}
       onCreated={({ gl }) => gl.setClearColor('#04060b')}
     >
+      <AdaptiveQuality />
       <CameraRig />
-      <Starfield count={small ? 2200 : 5000} />
-      <Galaxy count={small ? 26000 : 70000} />
-      <BlackHole count={small ? 3500 : 9000} />
+      <Starfield count={small ? 1200 : 2600} />
+      <Galaxy count={small ? 14000 : 36000} />
+      <BlackHole count={small ? 1500 : 4000} />
       <Planet position={homeworld} color="#36e2b4" size={2.1} seed={0.4} ring active={() => Math.round(journey.j) === STOPS.about} />
       {planets.map((p, i) => (
         <Planet
