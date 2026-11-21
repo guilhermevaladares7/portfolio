@@ -21,7 +21,7 @@ export function About() {
             transition={{ duration: 0.8, ease: [0.2, 0.9, 0.2, 1] }}
             className="glass relative w-full max-w-[600px] rounded-3xl p-6 ring-1 ring-white/10 sm:p-9"
           >
-            <div className="absolute -top-[54px] right-6 w-[60px] md:-right-[52px] md:bottom-8 md:top-auto md:w-[84px]">
+            <div className="absolute -right-[52px] bottom-8 hidden w-[84px] md:block">
               <Mascot size="100%" outfit="astronaut" mood="happy" lines={[t(copy.about.auri)]} bubbleSide="left" label="Auri" />
             </div>
 
