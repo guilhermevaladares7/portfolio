@@ -20,36 +20,6 @@ const gh = (repo: string) => `https://github.com/guilhermevaladares7/${repo}`
 
 export const projects: Project[] = [
   {
-    id: 'filmes',
-    name: 'Site de filmes',
-    date: '2026-05',
-    when: { pt: 'mai 2026', en: 'May 2026' },
-    summary: {
-      pt: 'Catálogo de filmes de ação com uma página de detalhes para cada título. Foi o meu primeiro site com várias páginas e JavaScript cuidando do conteúdo.',
-      en: 'An action movie catalog with a details page for each title. My first multi-page website with JavaScript driving the content.',
-    },
-    tech: ['HTML', 'CSS', 'JavaScript'],
-    repo: gh('trabalho-site-de-filmes'),
-    media: 'projetos/filmes.gif',
-    mediaAlt: { pt: 'Página inicial do site de filmes rolando', en: 'Movie website home page scrolling' },
-    color: '#ffc94d',
-  },
-  {
-    id: 'api-produto',
-    name: 'API de Produtos',
-    date: '2026-08',
-    when: { pt: 'ago 2026', en: 'Aug 2026' },
-    summary: {
-      pt: 'API REST com as cinco operações de um produto: listar, buscar, criar, alterar e excluir. Tem validação, códigos de status certos e uma coleção do Postman para testar.',
-      en: 'A REST API with the five product operations: list, fetch, create, update and delete. It has validation, proper status codes and a Postman collection for testing.',
-    },
-    tech: ['Node.js', 'Express', 'REST', 'Postman'],
-    repo: gh('api-produto'),
-    media: 'projetos/api-produto.gif',
-    mediaAlt: { pt: 'Respostas da API de produtos no navegador', en: 'Product API responses in the browser' },
-    color: '#8fd0ff',
-  },
-  {
     id: 'hospitalar',
     name: 'Sistema de Informação Hospitalar',
     date: '2026-10',

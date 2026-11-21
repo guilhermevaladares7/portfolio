@@ -89,7 +89,7 @@ O objetivo é apresentar a minha trajetória, minhas habilidades, meus projetos 
 - 📺 **Abertura com a tela ligando:** a linha branca de um monitor CRT se abre e a câmera chega voando até a galáxia.
 - 🌌 **Universo em 3D guiado pela rolagem:** galáxia espiral com 70 mil partículas, planetas com superfície procedural, constelação e buraco negro com disco de acreção, todos em shaders próprios.
 - 🪐 **Planetas clicáveis:** clicar num planeta leva até o projeto dele. Passar o mouse destaca o projeto na linha do tempo.
-- 🗂️ **Linha do tempo dos projetos:** dez projetos em ordem cronológica, cada um com nome, descrição, tecnologias, link do GitHub, link do site no ar (quando existe) e um GIF dele funcionando.
+- 🗂️ **Linha do tempo dos projetos:** oito projetos em ordem cronológica, cada um com nome, descrição, tecnologias, link do GitHub, link do site no ar (quando existe) e um GIF dele funcionando.
 - 💼 **Experiências organizadas:** empresa ou instituição, cargo ou atividade, período e descrição de cada etapa.
 - 🌐 **Português e inglês:** o site inteiro troca de idioma, e o "Sobre mim" tem a troca em destaque com efeito de decodificação. A escolha fica salva no navegador.
 - 📨 **Formulário de contato com envio por e-mail:** nome, e-mail e mensagem, com validação, enviado pelo **EmailJS**. Sem as chaves configuradas, ele abre o app de e-mail com a mensagem pronta.
@@ -153,7 +153,7 @@ As duas conversam por um objeto pequeno, o `journey`:
 ```mermaid
 flowchart LR
     A[Rolagem da página] --> B[useJourney]
-    B -->|"posição na viagem (0 a 13)"| C[journey]
+    B -->|"posição na viagem (0 a 11)"| C[journey]
     C --> D[CameraRig]
     D -->|curva Catmull-Rom| E[Câmera 3D]
     B -->|parada atual| F[Menu, trilha e card do projeto]
@@ -162,7 +162,7 @@ flowchart LR
     H -->|pulso| C
 ```
 
-- **Paradas:** cada seção marca no HTML o ponto em que a câmera deve estar parada (`data-stop`). O hook `useJourney` mede essas posições e transforma a rolagem num número contínuo, de 0 (início) a 13 (contato).
+- **Paradas:** cada seção marca no HTML o ponto em que a câmera deve estar parada (`data-stop`). O hook `useJourney` mede essas posições e transforma a rolagem num número contínuo, de 0 (início) a 11 (contato).
 - **Câmera:** o `CameraRig` passa esse número por curvas Catmull-Rom com as posições e os alvos de cada parada (`layout.ts`). Ele segura a câmera parada no começo e no fim de cada trecho, para dar tempo de ler, e suaviza o movimento. Em telas estreitas usa outros alvos, para o planeta aparecer acima do texto.
 - **Desempenho:** as partículas são geradas uma vez, com um gerador de números com semente (a galáxia sai igual em toda visita). O movimento delas é calculado na GPU, nos shaders. O Three.js fica num pedaço separado do código, carregado depois do texto (`React.lazy`).
 - **Dados separados da interface:** perfil, projetos, experiências e todos os textos ficam em `src/data`, em português e inglês. Para adicionar um projeto basta incluir um item em `projects.ts`: o planeta, a parada da câmera e o ponto na linha do tempo aparecem sozinhos.
@@ -295,13 +295,13 @@ Para ativar num fork: **Settings → Pages → Source: GitHub Actions**.
 
 ### 🎞️ GIFs dos projetos
 
-Gravados com os projetos rodando: os sites no ar, e os demais rodando localmente a partir dos repositórios.
+Gravados com os projetos rodando: os sites no ar, e os demais rodando localmente a partir dos repositórios, e o do Calenda a partir de uma gravação de tela do sistema.
 
 | Site da Aurea | Calenda |
 | :---: | :---: |
 | <img src="public/projetos/aurea.gif" alt="Site da Aurea" width="400px"> | <img src="public/projetos/calenda.gif" alt="Sistema Calenda" width="400px"> |
-| **Sistema de Informação Hospitalar** | **API de Produtos** |
-| <img src="public/projetos/hospitalar.gif" alt="Telas do sistema hospitalar" width="400px"> | <img src="public/projetos/api-produto.gif" alt="Requisições da API de produtos" width="400px"> |
+| **Sistema de Informação Hospitalar** | **Catálogo de Produtos** |
+| <img src="public/projetos/hospitalar.gif" alt="Telas do sistema hospitalar" width="400px"> | <img src="public/projetos/catalogo.gif" alt="Busca e detalhes no catálogo de produtos" width="400px"> |
 
 ---
 
